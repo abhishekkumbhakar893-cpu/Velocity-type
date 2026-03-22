@@ -1,0 +1,76 @@
+:root {
+    --neon: #00f2ff;
+    --dark: #05080f;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--dark); color: white;
+    height: 100vh; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.bg-glow {
+    position: fixed; width: 100vw; height: 100vh;
+    background: radial-gradient(circle at 50% 50%, #1a2a44 0%, transparent 80%);
+    z-index: -1; opacity: 0.6;
+}
+
+/* SCREEN MANAGEMENT */
+.screen { display: none; width: 100%; height: 100%; align-items: center; justify-content: center; animation: fadeIn 0.4s ease; }
+.screen.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* LOGO FIX */
+.logo-container { margin-bottom: 25px; }
+.main-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    font-weight: 900; letter-spacing: -1px;
+    text-shadow: 0 0 20px var(--neon);
+    animation: float 3s ease-in-out infinite;
+}
+.main-logo span { color: var(--neon); }
+.main-logo.mini { font-size: 1.6rem; margin-bottom: 10px; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* CARDS */
+.card {
+    background: var(--glass); border: 1px solid rgba(0, 242, 255, 0.2);
+    backdrop-filter: blur(25px); padding: 30px; border-radius: 25px;
+    width: 90%; max-width: 380px; text-align: center;
+}
+
+/* INPUTS & BUTTONS */
+input {
+    width: 100%; padding: 14px; margin: 10px 0; border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.4); color: white; border-radius: 10px; outline: none;
+}
+.otp-field { letter-spacing: 10px; text-align: center; font-size: 1.5rem; }
+
+button {
+    width: 100%; padding: 15px; margin-top: 15px; border: none;
+    background: var(--neon); color: black; font-weight: 900;
+    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%); cursor: pointer;
+}
+
+/* GAME ENGINE */
+#word-display {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 12vw, 5rem);
+    margin: 40px 0; font-weight: 900;
+    text-shadow: 0 0 25px var(--neon); text-transform: uppercase;
+}
+.hud-top { display: flex; justify-content: space-around; width: 100%; max-width: 600px; color: var(--neon); font-family: 'Orbitron'; }
+.hud-val { background: var(--glass); padding: 8px 15px; border-radius: 8px; border: 1px solid var(--neon); }
+
+/* MODALS & LEADERBOARD */
+.modal { display: none; position: fixed; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999; }
+.modal-content { background: #0d1117; border: 1px solid var(--neon); padding: 30px; width: 85%; max-width: 450px; margin: 15% auto; border-radius: 20px; text-align: center; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0 8px; margin-top: 15px; }
+td { background: rgba(255,255,255,0.03); padding: 12px; font-size: 0.85rem; }
+th { color: var(--neon); font-size: 0.7rem; text-transform: uppercase; padding-bottom: 10px; }

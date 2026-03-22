@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocity Type | Professional Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <section id="register-screen" class="screen active">
+        <div class="card">
+            <div class="logo-container">
+                <div class="main-logo">VELOCITY<span>TYPE</span></div>
+                <div class="tagline">NEET SPEED PROTOCOL</div>
+            </div>
+            <input type="text" id="reg-id" placeholder="Mobile or Gmail">
+            <input type="text" id="reg-name" placeholder="Full Name">
+            <input type="number" id="reg-age" placeholder="Age">
+            <div class="pass-box">
+                <input type="password" id="reg-pass" placeholder="Create Password">
+                <span onclick="togglePass('reg-pass')">👁️</span>
+            </div>
+            <button onclick="showTerms()">INITIALIZE ACCOUNT</button>
+            <p class="switch">Registered? <span onclick="navTo('login-screen')">Login</span></p>
+        </div>
+    </section>
+
+    <section id="otp-screen" class="screen">
+        <div class="card">
+            <div class="logo-main mini">SYSTEM<span>VERIFY</span></div>
+            <h2>Verify Identity</h2>
+            <p style="font-size: 0.8rem; margin: 10px 0; opacity: 0.7;">Enter the 4-digit code sent to your device.</p>
+            <input type="number" id="otp-input" placeholder="0000" class="otp-field">
+            <button onclick="verifyOTP()">ACTIVATE PILOT</button>
+        </div>
+    </section>
+
+    <section id="login-screen" class="screen">
+        <div class="card">
+            <div class="logo-main mini">VELOCITY<span>TYPE</span></div>
+            <h1>SYSTEM ACCESS</h1>
+            <input type="text" id="login-id" placeholder="Gmail / Mobile">
+            <div class="pass-box">
+                <input type="password" id="login-pass" placeholder="Password">
+                <span onclick="togglePass('login-pass')">👁️</span>
+            </div>
+            <button onclick="handleLogin()">ACCESS TERMINAL</button>
+            <p class="forgot" onclick="openForgotModal()">Forgot Password?</p>
+        </div>
+    </section>
+
+    <section id="menu-screen" class="screen">
+        <div class="card">
+            <h1>WELCOME, <span id="user-display">PILOT</span></h1>
+            <div class="settings-box">
+                <label>AUDIO FEEDBACK</label>
+                <input type="checkbox" id="sound-toggle" checked>
+            </div>
+            <button class="start-btn" onclick="startGame()">START PROTOCOL</button>
+            <button class="logout" onclick="navTo('login-screen')">EJECT SYSTEM</button>
+        </div>
+    </section>
+
+    <section id="game-screen" class="screen">
+        <div class="engine-container">
+            <div class="hud-top">
+                <div class="hud-val">TIME: <span id="timer">30</span>s</div>
+                <div class="hud-val">WPM: <span id="live-wpm">0</span></div>
+                <div class="hud-val">ACC: <span id="live-acc">100</span>%</div>
+            </div>
+            <div id="word-display">READY</div>
+            <div class="input-wrapper">
+                <input type="text" id="user-input" placeholder="Type..." autocomplete="off">
+            </div>
+        </div>
+    </section>
+
+    <div id="leaderboard-modal" class="modal">
+        <div class="modal-content wide">
+            <div class="logo-main mini">GLOBAL<span>RANKINGS</span></div>
+            <table id="full-leaderboard">
+                <thead><tr><th>Rank</th><th>Pilot</th><th>WPM</th><th>Score</th></tr></thead>
+                <tbody id="leaderboard-body-full"></tbody>
+            </table>
+            <button onclick="closeLeaderboard()">CLOSE TERMINAL</button>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal"><div class="modal-content"><h2>TERMS</h2><p>Data is stored locally. Focus on speed.</p><button onclick="acceptTerms()">ACCEPT</button></div></div>
+    <div id="forgot-modal" class="modal"><div class="modal-content"><h2>RECOVERY</h2><input type="text" id="forgot-id" placeholder="Enter ID"><p id="forgot-res"></p><button onclick="recoverPass()">RECOVER</button><button onclick="closeForgotModal()">BACK</button></div></div>
+    <div id="error-popup" class="modal"><div class="modal-content error-box"><h2>ERROR</h2><p id="error-msg"></p><button onclick="closeError()">RETRY</button></div></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
